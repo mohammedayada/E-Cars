@@ -1,0 +1,125 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load humanize %}
+{% load hitcount_tags %}
+{% block content %}
+
+  <!--Main layout-->
+  <main class="mt-5 pt-4">
+    <div class="container dark-grey-text mt-5">
+
+      <!--Grid row-->
+      <div class="row wow fadeIn">
+
+        <!--Grid column-->
+        <div class="col-md-6 mb-4">
+
+          <a href="{{object.image.url}}">
+            <img src="{{object.image.url}}" class="img-fluid" alt="">
+          </a>
+        </div>
+        <!--Grid column-->
+
+        <!--Grid column-->
+        <div class="col-md-6 mb-4">
+
+          <!--Content-->
+          <div class="p-4">
+
+            <div class="mb-3">
+              <a href="">
+                <span class="badge purple mr-1">Category 2</span>
+              </a>
+              <a href="">
+                <span class="badge blue mr-1">New</span>
+              </a>
+              <a href="">
+                <span class="badge red mr-1">Bestseller</span>
+              </a>
+            </div>
+            <p class="lead font-weight-bold">{{object.title}}
+              {% if object.discount_price %}
+              ${{object.price|intcomma|intword}}
+              {%endif%}
+              </span>
+              <span>
+                {% if object.discount_price %}
+                ${{object.discount_price|intcomma|intword}}
+                {% else %}
+                ${{object.price|intcomma|intword}}
+                {% endif %}
+              </span>
+            </p>
+            <table class="table">
+              <tbody >
+              <tr>
+                <th class="black white-text" scope="row">model</th>
+                <td>{{object.model}}</td>
+                <th class="black white-text" scope="row">year</th>
+                <td>{{object.manufacturing_year}}</td>
+              </tr>
+              <tr>
+                <th class="black white-text" scope="row">capacity</th>
+                <td>{{object.get_capacity_display}}</td>
+                <th class="black white-text" scope="row">gear box</th>
+                <td>{{object.get_gearbox_display}}</td>
+              </tr>
+              <tr>
+                <th class="black white-text" scope="row">structure type</th>
+                <td>{{object.get_structure_display}}</td>
+                <th class="black white-text" scope="row">Kilometers</th>
+                <td>{{object.Kilometers|intcomma|intword}}</td>
+              </tr>
+              <tr>
+                <th class="black white-text" scope="row">car state</th>
+                <td>{{object.get_state_display}}</td>
+                <th class="black white-text" scope="row">category</th>
+                <td>{{object.get_category_display}}</td>
+              </tr>
+              <tr>
+                <th class="black white-text" scope="row">color</th>
+                <td>{{object.color}}</td>
+                <th class="black white-text" scope="row">Ad type</th>
+                <td>{{object.get_Ad_type_display}}</td>
+              </tr>
+              <tr>
+                <th class="black white-text" scope="row">Views</th>
+                <td>{{ hitcount.total_hits|intcomma|intword }}</td>
+                <th class="black white-text" scope="row">Publish date</th>
+                <td>{{object.Publish_date|naturaltime}}</td>
+              </tr>
+              <tr>
+                <th class="black white-text" scope="row">description</th>
+                <td>{{object.description}}</td>
+              </tr>
+              <tr>
+                <th class="black white-text" scope="row">telephone</th>
+                <td>{{object.telephone}}</td>
+              </tr>
+              {%if request.user == object.user%}
+              <tr>
+                <th>
+
+                   <a  href="{{object.get_absolute_url}}/edit"><button class="btn btn-primary ">Edit advertisment</button></a>
+
+                </th>
+              </tr>
+              {%endif%}
+              </tbody>
+            </table>
+
+          </div>
+          <!--Content-->
+
+        </div>
+        <!--Grid column-->
+      </div>
+      <!--Grid row-->
+
+      <!--Grid row-->
+
+
+    </div>
+  </main>
+  <!--Main layout-->
+{% endblock content%}

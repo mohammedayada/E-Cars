@@ -1,0 +1,291 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>{% block head_title %}{% endblock %}</title>
+    {% block head_links %}
+    {% endblock %}
+  </head>
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
+  <!-- Bootstrap core CSS -->
+  <link href="{% static 'store/css/bootstrap.min.css' %}" rel="stylesheet">
+  <!-- Material Design Bootstrap -->
+  <link href="{% static 'store/css/mdb.min.css' %}" rel="stylesheet">
+  <!-- Your custom styles (optional) -->
+  <link href="{% static 'store/css/style.min.css' %}" rel="stylesheet">
+  <style type="text/css">
+    html,
+    body,
+    header,
+    .carousel {
+      height: 60vh;
+    }
+
+    @media (max-width: 740px) {
+
+      html,
+      body,
+      header,
+      .carousel {
+        height: 100vh;
+      }
+    }
+
+    @media (min-width: 800px) and (max-width: 850px) {
+
+      html,
+      body,
+      header,
+      .carousel {
+        height: 100vh;
+      }
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar fixed-top navbar-expand-lg  navbar-light white scrolling-navbar p-1 lighten-3  ">
+    <div class="container">
+
+      <!-- Brand -->
+      <a class="navbar-brand waves-effect" href="/">
+        <strong class="blue-text">E-Cars</strong>
+      </a>
+
+      <!-- Collapse -->
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <!-- Links -->
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+        <!-- Left -->
+        <ul class="navbar-nav ml-auto">
+          <li class ='nav-item'>
+            <a class="nav-link waves-effect" href="/addcar">
+              <span class="clearfix  d-sm-inline-block ">Add AD</span>
+            </a>
+          </li>
+          {% if request.user.is_authenticated%}
+          <li class="nav-item">
+            <a class="nav-link waves-effect" href="{% url 'account_logout'%}">
+              <span class="clearfix  d-sm-inline-block "> Logout </span>
+            </a>
+          </li>
+
+          <li class ='nav-item'>
+            <a class="nav-link waves-effect" href="">
+              <span class="clearfix  d-sm-inline-block ">{{ user.get_username }}</span>
+            </a>
+          </li>
+          {% else %}
+          <li class="nav-item">
+            <a class="nav-link waves-effect" href="{% url 'account_login'%}">
+              <span class="clearfix  d-sm-inline-block "> Login </span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link waves-effect" href="{% url 'account_signup'%}">
+              <span class="clearfix  d-sm-inline-block"> signup </span>
+            </a>
+          </li>
+          {% endif%}
+          <li class="nav-item">
+            <a href="https://www.facebook.com/" class="nav-link waves-effect blue-text" target="_blank">
+              <i class="fab fa-facebook-f"></i>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="https://twitter.com/" class="nav-link waves-effect blue-text" target="_blank">
+              <i class="fab fa-twitter"></i>
+            </a>
+          </li>
+
+        </ul>
+
+        <!-- Right -->
+        <ul class="navbar-nav nav-flex-icons">
+
+        </ul>
+
+      </div>
+
+    </div>
+  </nav>
+  <!-- Navbar -->
+{% if messages %}
+<ul class="messages mt-5 pt-3 pl-1">
+  {% for message in messages %}
+  {% if message.tags %}
+  <div class="alert alert-{{ message.tags }}" role="alert">
+    {{ message }}
+  </div>
+  {% endif %}
+  {% endfor %}
+</ul>
+{% endif %}
+{%block content%}
+  {%endblock content%}
+
+
+  {% block extra_body %}
+    {% endblock %}
+  <!--Footer-->
+ <!-- Footer -->
+  <!-- Footer -->
+<footer class="page-footer font-small mdb-color blue darken-1 pt-4">
+
+  <!-- Footer Links -->
+  <div class="container text-center text-md-left">
+
+    <!-- Grid row -->
+    <div class="row">
+
+      <!-- Grid column -->
+      <div class="col-md-4 col-lg-3 mr-auto my-md-4 my-0 mt-4 mb-1">
+
+        <!-- Content -->
+        <h5 class="font-weight-bold text-uppercase mb-4">Footer Content</h5>
+        <p>This site for sell and buy any car</p>
+        <p>
+          this site develop by mohammed hamdy ayada django developer computer science student at assuit university
+        </p>
+
+      </div>
+      <!-- Grid column -->
+
+      <hr class="clearfix w-100 d-md-none">
+
+      <!-- Grid column -->
+      <div class="col-md-2 col-lg-2 mx-auto my-md-4 my-0 mt-4 mb-1">
+
+        <!-- Links -->
+        <h5 class="font-weight-bold text-uppercase mb-4">About</h5>
+
+        <ul class="list-unstyled">
+          <li>
+            <p>
+              <a href="#!">PROJECTS</a>
+            </p>
+          </li>
+          <li>
+            <p>
+              <a href="#!">ABOUT US</a>
+            </p>
+          </li>
+          <li>
+            <p>
+              <a href="#!">BLOG</a>
+            </p>
+          </li>
+          <li>
+            <p>
+              <a href="#!">AWARDS</a>
+            </p>
+          </li>
+        </ul>
+
+      </div>
+      <!-- Grid column -->
+
+      <hr class="clearfix w-100 d-md-none">
+
+      <!-- Grid column -->
+      <div class="col-md-4 col-lg-3 mx-auto my-md-4 my-0 mt-4 mb-1">
+
+        <!-- Contact details -->
+        <h5 class="font-weight-bold text-uppercase mb-4">Address</h5>
+
+        <ul class="list-unstyled">
+          <li>
+            <p>
+              <i class="fas fa-home mr-3"></i> Egypt, Assuit</p>
+          </li>
+          <li>
+            <p>
+              <i class="fas fa-envelope mr-3"></i> mohammedayada1998@gmail.com</p>
+          </li>
+          <li>
+            <p>
+              <i class="fas fa-phone mr-3"></i> +201117759779</p>
+          </li>
+        </ul>
+
+      </div>
+      <!-- Grid column -->
+
+      <hr class="clearfix w-100 d-md-none">
+
+      <!-- Grid column -->
+      <div class="col-md-2 col-lg-2 text-center mx-auto my-4">
+
+        <!-- Social buttons -->
+        <h5 class="font-weight-bold text-uppercase mb-4">Follow Us</h5>
+
+        <!-- Facebook -->
+        <a type="button" class="btn-floating btn-fb" href="https://www.facebook.com/mohamed.hamdayayada">
+          <i class="fab fa-facebook-f"></i>
+        </a>
+        <!-- Twitter -->
+        <a type="button" class="btn-floating btn-tw" href="https://twitter.com/MohammedAyada98?fbclid=IwAR1nB4Si9VssAYExi5uYhSauDP0FACFc_rkQ877ZgurAk6XJXRLcSqcjM_U">
+          <i class="fab fa-twitter"></i>
+        </a>
+        <!-- Google +-->
+        <a type="button" class="btn-floating btn-gplus">
+          <i class="fab fa-google-plus-g"></i>
+        </a>
+        <!-- Dribbble -->
+        <a type="button" class="btn-floating btn-dribbble">
+          <i class="fab fa-dribbble"></i>
+        </a>
+
+      </div>
+      <!-- Grid column -->
+
+    </div>
+    <!-- Grid row -->
+
+  </div>
+  <!-- Footer Links -->
+
+  <!-- Copyright -->
+  <div class="footer-copyright text-center py-3">© 2020 Copyright:
+    <a href="https://mdbootstrap.com/"> MDBootstrap.com</a>
+  </div>
+  <!-- Copyright -->
+
+</footer>
+<!-- Footer -->
+ <!--/.Footer-->
+
+  <!-- SCRIPTS -->
+  <!-- JQuery -->
+  <script type="text/javascript" src="{% static 'store/js/jquery-3.4.1.min.js' %}"></script>
+  <!-- Bootstrap tooltips -->
+  <script type="text/javascript" src="{% static 'store/js/popper.min.js' %}"></script>
+  <!-- Bootstrap core JavaScript -->
+  <script type="text/javascript" src="{% static 'store/js/bootstrap.min.js' %}"></script>
+  <!-- MDB core JavaScript -->
+  <script type="text/javascript" src="{% static 'store/js/mdb.min.js' %}"></script>
+  <!-- Initializations -->
+  <script type="text/javascript">
+    // Animations initialization
+    new WOW().init();
+
+
+  </script>
+</body>
+
+</html>
+
